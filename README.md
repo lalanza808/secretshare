@@ -67,10 +67,10 @@ With debug mode enabled you will be able to modify files and have Flask automati
 
 ```
 # POST a new secret
-$ curl "http://127.0.0.1:5000/secret/" \
+$ curl http://127.0.0.1:5000/secret/ \
     -X POST \
     -H "Content-Type: application/json" \
-    -d "{\"username\": \"lance\",  \"password\": \"TopS3cr3t1!\"}"
+    -d "{\"username\": \"lance\",  \"password\": \"TopS3cr3t1\"}"
 
 {
   "token": "tpXv-Pk3W1lZJzY5v-6oEU8029IublWHjSs3BzbETW4"
@@ -78,13 +78,11 @@ $ curl "http://127.0.0.1:5000/secret/" \
 
 
 # GET an existing secret
-$ curl "http://127.0.0.1:5000/secret/?token=tpXv-Pk3W1lZJzY5v-6oEU8029IublWHjSs3BzbETW4" \
-    -X GET \
-    -H "Content-Type: application/json"
+$ curl http://127.0.0.1:5000/secret/?token=tpXv-Pk3W1lZJzY5v-6oEU8029IublWHjSs3BzbETW4
 
 {
   "username": "lance",
-  "password": "TopS3cr3t1!",
+  "password": "TopS3cr3t1",
   "expiration": "2019-02-26T09:46:49.790153+00:00"
 }
 
