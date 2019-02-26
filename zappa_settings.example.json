@@ -1,0 +1,30 @@
+{
+    "dev": {
+        "app_function": "secretshare.app.app",
+        "aws_region": "us-west-2",
+        "profile_name": "default",
+        "project_name": "secretshare",
+        "log_level": "INFO",
+        "runtime": "python3.6",
+        "s3_bucket": "##CHANGEME##",
+        "environment_variables": {
+            "FLASK_SECRETS": "config.py"
+        },
+        "events": [{
+            "function": "secretshare.cleanup.purge_expired_secrets",
+            "expression": "rate(12 hours)"
+        }],
+        "extra_permissions": [{
+            "Effect": "Allow",
+            "Action": [
+                "secretsmanager:ListSecrets",
+                "secretsmanager:DescribeSecret",
+                "secretsmanager:DeleteSecret",
+                "secretsmanager:GetSecretValue",
+                "secretsmanager:CreateSecret",
+                "secretsmanager:TagResource"
+            ],
+            "Resource": "*"
+        }]
+    }
+}

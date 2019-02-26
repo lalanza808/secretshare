@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# This script assumes a lot - you should probably just set
+# it up on your own rather than relying on this script
+
+rm -rf .venv
+python3 -m venv .venv
+source .venv/bin/activate
+pip install .

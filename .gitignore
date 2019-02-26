@@ -1,0 +1,11 @@
+.venv
+config.py
+__pycache__
+.DS_Store
+.idea
+zappa_settings.json
+*zip
+*.egg-info
+*pyc
+build/
+dist/

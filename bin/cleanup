@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# Fetch all secrets
+export secrets=$(aws secretsmanager list-secrets --query "SecretList[].Name[]" | jq -r ".[]")
+
+# Loop through and delete each one
+while read -r line; do
+    echo "[+] Deleting ${line}";
+    aws secretsmanager delete-secret --secret-id "${line}";
+done <<< "$secrets"

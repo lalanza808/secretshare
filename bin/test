@@ -1,0 +1,10 @@
+#!/bin/bash
+
+echo -e "[+] Creating a secret"
+curl -X POST 127.0.0.1:5000/secret/ \
+    -H "Content-Type: application/json" \
+    -d "{
+  \"username\": \"$(whoami)\",
+  \"password\": \"$(openssl rand -base64 32)\",
+  \"message\": \"This is my secret password!\"
+}"
