@@ -88,6 +88,8 @@ $ curl http://127.0.0.1:5000/secret/?token=tpXv-Pk3W1lZJzY5v-6oEU8029IublWHjSs3B
 
 ```
 
+By nature of using Flask-RESTPlus there is some Swagger documentation that is automatically generated. You can view it in your browser: http://127.0.0.1:5000/
+
 ## Deploying to AWS
 
 As long as you're setup properly you can deploy to AWS using Zappa.
@@ -97,6 +99,14 @@ $ zappa deploy
 ```
 
 When the deployment is finished you will be provided a new AWS API Gateway endpoint; something like `https://2rdpleh3tf.execute-api.us-west-2.amazonaws.com/dev`. You can validate the endpoint by running the same `curl` commands as above but replacing the endpoint with your API Gateway.
+
+Part of the Zappa configuration includes a recurring event; every 12 hours a Lambda function is scanning all secrets and purging expired secrets. If no `expiration` was set during secret creation then the application defaults to **1 hour** expiration; this can be changed in `secretshare/config.py`. The tag set on the secret is the basis for this expiration check.
+
+If you'd like to cleanup the secrets manually, you can invoke the Lambda function manually with Zappa:
+
+```
+$ zappa invoke secretshare.cleanup.purge_expired_secrets
+```
 
 ## What Now?
 
