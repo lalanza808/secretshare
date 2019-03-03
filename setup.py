@@ -15,6 +15,7 @@ REQUIRED = [
     "boto3==1.9.74",
     "flask-restplus==0.12.1",
     "Flask==1.0.2",
+    "Flask-Cors==3.0.7",
     "zappa==0.47.1"
 ]
 EXTRAS = {

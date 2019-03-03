@@ -3,6 +3,7 @@
 
 from flask import Flask, jsonify, request, make_response
 from flask_restplus import Api, Resource, reqparse, fields
+from flask_cors import CORS as cors
 from secretshare import __version__
 from secretshare.library import secretsmanager
 
@@ -10,7 +11,8 @@ from secretshare.library import secretsmanager
 # Define Flask application
 app = Flask(__name__)
 app.config.from_envvar('FLASK_SECRETS')
-api = Api(app, version=__version__, title=app.config['APP_NAME'],
+cors(app, origins=app.config.get('ALLOWED_DOMAINS', '*'))
+api = Api(app, version=__version__, title=app.config.get('APP_NAME', 'secretshare'),
     description='Simple secret sharing API using AWS Secrets Manager'
 )
 
