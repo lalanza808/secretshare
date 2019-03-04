@@ -110,4 +110,10 @@ $ zappa invoke secretshare.cleanup.purge_expired_secrets
 
 ## What Now?
 
-Most people don't necessarily care about the backend API - this is only one half of the battle as we need something to present the information. This API can be used in conjunction with any static website with simple Javascript for posting, retrieving, and rendering the data. I'll be creating an example static website to showcase this; it's on my to-do list.
+Most people don't necessarily care about the backend API - this is only one half of the battle as we need something to present the information. This API can be used in conjunction with any static website with simple Javascript for posting, retrieving, and rendering the data.
+
+Here's an example one: [secretshare-static](https://github.com/lalanza808/secretshare-static)
+
+## To-do
+
+* Add expiration after first read payload option
