@@ -90,7 +90,7 @@ class Secret(object):
 
         if not expiration:
             # Set default time expiration
-            self.expiration = str(now.shift(hours=app.config['DEFAULT_HOURS']))
+            self.expiration = str(now.shift(hours=app.config.get('DEFAULT_HOURS')))
         else:
             # Otherwise validate we have a good expiration date
             try:

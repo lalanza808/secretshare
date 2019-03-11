@@ -52,16 +52,13 @@ class Secrets(Resource):
             secret = secretsmanager.Secret(secret_name=secret_name)
 
             if secret.exists and not secret.expired:
-                # If secret exists and not expired, return secret
                 return secret.retrieve(), 200
             else:
-                # If secret is expired or doesn't exist, return error
                 return {
                     'error_msg': 'This secret is expired or does not exist.',
                     'error_id': 'expired_secret'
                 }, 400
         else:
-            # If no query string provided, return error
             return {
                 'error_msg': 'No secret token provided.',
                 'error_id': 'no_token'
