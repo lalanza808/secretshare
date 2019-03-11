@@ -22,6 +22,7 @@ secret_data = api.model('secret_data', {
     'password': fields.String,
     'message': fields.String,
     'expiration': fields.DateTime,
+    'expire_on_read': fields.Boolean
 })
 response_data = api.inherit('response_data', secret_data, {
     'token': fields.String,
@@ -51,16 +52,13 @@ class Secrets(Resource):
             secret = secretsmanager.Secret(secret_name=secret_name)
 
             if secret.exists and not secret.expired:
-                # If secret exists and not expired, return secret
                 return secret.retrieve(), 200
             else:
-                # If secret is expired or doesn't exist, return error
                 return {
                     'error_msg': 'This secret is expired or does not exist.',
                     'error_id': 'expired_secret'
                 }, 400
         else:
-            # If no query string provided, return error
             return {
                 'error_msg': 'No secret token provided.',
                 'error_id': 'no_token'
@@ -77,9 +75,12 @@ class Secrets(Resource):
                     username=api.payload.get('username', ''),
                     password=api.payload.get('password', ''),
                     message=api.payload.get('message', ''),
-                    expiration=api.payload.get('expiration', '')
+                    expiration=api.payload.get('expiration', ''),
+                    expire_on_read=api.payload.get('expire_on_read', False)
                 )
-                return {'token': secret.secret_name}, 201
+                return {
+                    'token': secret.secret_name
+                }, 201
             except ValueError as err:
                 return {
                     'error_msg': 'Invalid expiration date',
