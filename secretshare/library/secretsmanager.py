@@ -9,6 +9,7 @@ from arrow import get as arrow_get
 from arrow import utcnow as arrow_utcnow
 from flask import current_app as app
 from secrets import token_urlsafe
+from secretshare import __version__
 
 
 class Secret(object):
@@ -116,6 +117,10 @@ class Secret(object):
                 {
                     'Key': 'ExpireOnRead',
                     'Value': str(self.expire_on_read)
+                },
+                {
+                    'Key': 'Version',
+                    'Value': str(__version__)
                 }
             ]
         )
