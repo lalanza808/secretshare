@@ -7,6 +7,11 @@
         "log_level": "INFO",
         "runtime": "python3.6",
         "s3_bucket": "##CHANGEME##",
+        "cors": {
+            "allowed_headers": ["content-type"],
+            "allowed_methods": ["*"],
+            "allowed_origin": "*"
+        },
         "environment_variables": {
             "FLASK_SECRETS": "config.py"
         },
