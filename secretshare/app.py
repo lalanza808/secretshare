@@ -101,6 +101,11 @@ def not_found(error):
     ), 404)
     return response
 
+@app.cli.command()
+def purge_secrets():
+    """Purge secrets manually"""
+    from secretshare.cleanup import purge_expired_secrets
+    purge_expired_secrets()
 
 if __name__ == '__main__':
     app.run()
