@@ -22,6 +22,7 @@ secret_data = api.model('secret_data', {
     'password': fields.String,
     'message': fields.String,
     'expiration': fields.DateTime,
+    'expire_on_read': fields.Boolean
 })
 response_data = api.inherit('response_data', secret_data, {
     'token': fields.String,
@@ -77,9 +78,12 @@ class Secrets(Resource):
                     username=api.payload.get('username', ''),
                     password=api.payload.get('password', ''),
                     message=api.payload.get('message', ''),
-                    expiration=api.payload.get('expiration', '')
+                    expiration=api.payload.get('expiration', ''),
+                    expire_on_read=api.payload.get('expire_on_read', False)
                 )
-                return {'token': secret.secret_name}, 201
+                return {
+                    'token': secret.secret_name
+                }, 201
             except ValueError as err:
                 return {
                     'error_msg': 'Invalid expiration date',
