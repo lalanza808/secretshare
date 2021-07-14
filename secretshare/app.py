@@ -2,7 +2,7 @@
 
 
 from flask import Flask, jsonify, request, make_response
-from flask_restplus import Api, Resource, reqparse, fields
+from flask_restx import Api, Resource, reqparse, fields
 from flask_cors import CORS as cors
 from secretshare import __version__
 from secretshare.library import secretsmanager

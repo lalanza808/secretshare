@@ -11,12 +11,13 @@ AUTHOR = "Lance Allen"
 REQUIRES_PYTHON = ">=3.6.0"
 VERSION = __version__
 REQUIRED = [
-    "arrow==0.12.1",
-    "boto3==1.9.74",
-    "flask-restplus==0.12.1",
-    "Flask==1.0.2",
-    "Flask-Cors==3.0.7",
-    "zappa==0.47.1"
+    "arrow",
+    "boto3",
+    "flask-restx",
+    "werkzeug",
+    "Flask",
+    "Flask-Cors",
+    "zappa"
 ]
 EXTRAS = {
 }
